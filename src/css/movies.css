@@ -1,0 +1,11 @@
+#movies ul{
+    grid-template-columns: repeat( auto-fit, minmax(170px, 1fr) );
+}
+
+#movies li{
+    width: 10rem;
+}
+
+#movies article.card-body{
+    align-content:end;
+}

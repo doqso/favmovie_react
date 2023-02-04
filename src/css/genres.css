@@ -1,5 +1,5 @@
 #genres ul{
-    grid-template-columns: repeat( auto-fit, minmax(150px, 1fr) );
+    grid-template-columns: repeat( auto-fit, minmax(130px, 1fr) );
 
 }
 
@@ -7,10 +7,10 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    /* background-color: #fff; */
+    background-color: #05404d;
     border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
+    margin: 5px;
+    padding: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     transition: all 0.2s ease-in-out;
 }
@@ -18,7 +18,9 @@
 
 #genres ul li:hover{
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    background-color: rgb(127, 227, 242);
-    color: #fff;
+    background-color: hsl(200, 50%, 50%);
     cursor: pointer;
+}
+.active{
+    background-color: #18719d !important;
 }

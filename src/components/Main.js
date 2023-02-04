@@ -1,20 +1,14 @@
 import React, { useState } from "react";
-import GenresList from "./GenresList";
-import MoviesByGenre from "./MoviesByGenre";
+import Genres from "./Genres";
+import Movies from "./Movies";
+import Navigation from "./Navigation";
 
 export default function Main() {
-    const [genreId, setGenreId] = useState(null);
-    if (genreId === null) {
-        return (
-            <React.Fragment>
-                <GenresList setGenreId={setGenreId} />
-            </React.Fragment>
-        );
-    }
+    const [movies, setMovies] = useState(null)
     return (
         <React.Fragment>
-            <GenresList setGenreId={setGenreId} genreId={genreId}/>
-            <MoviesByGenre genreId={genreId} />
+            <Genres setMovies={setMovies} />
+            <Movies movies={movies} />
         </React.Fragment>
     );
 }
