@@ -1,9 +1,10 @@
 import React from "react";
-import Login from "./components/Login";
-
+import Main from "./components/Main";
+import "./css/main.css";
 const App = () => (
   <React.Fragment>
-    <Login />
+    {/* <Login /> */}
+    <Main />
   </React.Fragment>
 );
 
