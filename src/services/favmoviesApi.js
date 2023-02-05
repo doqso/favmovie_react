@@ -3,8 +3,8 @@ export async function getGenres() {
     .then(response => response.json())
 }
 
-export async function getMoviesByGenre(genreId) {
-    return await fetch(`http://localhost:8081/genre/${genreId}`)
+export async function getDataByGenre(genreId, page = 1) {
+    return await fetch(`http://localhost:8081/genre/${genreId}?page=${page}`)
     .then(response => response.json())
 }
 

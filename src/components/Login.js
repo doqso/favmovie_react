@@ -8,13 +8,13 @@ const Login = () => (
     position-absolute top-50 start-50 translate-middle">
             <h2>Login</h2>
             <form className="border-2">
-                <div class="mb-3 mt-3">
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Usuario" />
+                <div className="mb-3 mt-3">
+                    <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Usuario" />
                 </div>
-                <div class="mb-3 mt-3">
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Contraseña" />
+                <div className="mb-3 mt-3">
+                    <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Contraseña" />
                 </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" className="btn btn-primary">Sign in</button>
             </form>
         </section>
     </div>
