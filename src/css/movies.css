@@ -1,11 +1,7 @@
-#movies ul{
-    grid-template-columns: repeat( auto-fit, minmax(170px, 1fr) );
-}
-
-#movies li{
+#movies .movie-list li{
     width: 10rem;
 }
 
-#movies article.card-body{
+#movies .movie-list article.card-body{
     align-content:end;
 }

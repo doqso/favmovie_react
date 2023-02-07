@@ -1,20 +1,33 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-// eslint-disable-next-line no-unused-vars
-import Movie from "../models/Movie";
-import { getMovieById } from "../services/favmoviesApi";
+import { getMovieById, updateMovieWrapper } from "../services/favmoviesApi";
 import Loading from "./Loading";
+import MovieWrapper from "../models/MovieWrapper";
 import "../css/singleMovie.css";
 
 export default function SingleMovie() {
     const { id: movieId } = useParams();
-    const [movie, setMovie] = React.useState(null);
+    const [movieWrapper, setMovieWrapper] = React.useState(null);
     useEffect(() => {
         getMovieById(movieId).then((data) => {
-            setMovie(new Movie(data));
+            console.log(data);
+            setMovieWrapper(new MovieWrapper(data));
         });
     }, [movieId]);
-    if (!movie) return <Loading />;
+    const updateMovieStatus = (newFavoriteStatus, newWatchlistStatus) => {
+        let newMovieWrapper = new MovieWrapper(movieWrapper);
+        newMovieWrapper.isFavorite = newFavoriteStatus;
+        newMovieWrapper.isWatchlist = newWatchlistStatus;
+        console.log(newMovieWrapper);
+        updateMovieWrapper(newMovieWrapper)
+            .then((data) => {
+                console.log(data);
+                if (data.status === 200) setMovieWrapper(newMovieWrapper);
+            });
+    }
+    console.log({ movieWrapper });
+    if (!movieWrapper) return <Loading />;
+    const { movie, isFavorite, isWatchlist } = movieWrapper;
     return (
         <div id="single-movie">
             <h1 className="text-center mb-4 mt-2 fst-italic">{movie.title}</h1>
@@ -33,8 +46,18 @@ export default function SingleMovie() {
                     <h5 className="text-info">Género</h5>
                     <p> {movie.genres.map(genre => genre.name).join(", ")}</p>
                     <div className="d-flex gap-3">
-                        <button className="btn btn-outline-danger"  title="Favoritos">Favoritos ❤</button>
-                        <button className="btn btn-outline-warning" title="Ver más tarde">Pendientes 🕜</button>
+                        <button className={`btn
+                        ${isFavorite ? "btn-outline-success text-light" : "btn-outline-danger"}`}
+                            title="Favoritos"
+                            onClick={() => updateMovieStatus(!isFavorite, isWatchlist)}>
+                                Favoritos {isFavorite ? "✔" : "❤"}
+                        </button>
+                        <button className={`btn 
+                        ${isWatchlist ? "btn-outline-success text-light" : "btn-outline-warning"} `}
+                            title="Ver más tarde"
+                            onClick={() => updateMovieStatus(isFavorite, !isWatchlist)}>
+                                Pendientes {isWatchlist ? "✔" : "🕜"} 
+                        </button>
                     </div>
                 </section>
             </article>

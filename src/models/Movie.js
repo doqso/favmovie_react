@@ -14,17 +14,14 @@ export default class Movie{
         this.title = object.title;
         this.overview = object.overview;
         this.poster_path = object.poster_path;
-        this.release_date = new Date(object.release_date[0],
-            object.release_date[1],
-            object.release_date[2])
-            .toLocaleDateString();
+        this.release_date = new Date(object.release_date)
+        .toLocaleDateString("en-CA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        })
         this.budget = object.budget;
         this.revenue = object.revenue;
         this.genres = object.genres;
-    }
-
-    static getReleaseDateFormated(releaseDate){
-        return new Date(releaseDate[0], releaseDate[1], releaseDate[2])
-            .toLocaleDateString();
     }
 }

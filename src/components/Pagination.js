@@ -1,17 +1,21 @@
-import { NavLink, useParams, useSearchParams } from "react-router-dom"
-
-export default function Pagination() {
-    const [pages] = useSearchParams()
-    const { id } = useParams()
-    const currentPage = pages.get("page")
+export default function Pagination({searchParams, setSearchParams}) {
+    const currentPage = searchParams.get("page")
+    console.log(currentPage);
     return (
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
+        <nav aria-label="Page navigation">
+            <ul class="pagination m-0 gap-4">
                 <li class="page-item">
-                    <NavLink to={`/genre/${id}?page=${parseInt(currentPage) - 1}`} class="page-link" aria-label="Previous" >Previous</NavLink>
+                    <button style={{ width: "90px" }} 
+                    className="btn btn-outline-warning"
+                    onClick={()=>setSearchParams({page: parseInt(currentPage) - 1 || 1})}>
+                        Anterior
+                    </button>
                 </li>
                 <li class="page-item">
-                    <NavLink to={`/genre/${id}?page=${parseInt(currentPage) + 1}`} class="page-link" aria-label="Next" >Next</NavLink>
+                    <button style={{ width: "90px" }} className="btn btn-outline-warning"
+                    onClick={()=>setSearchParams({page: parseInt(currentPage) + 1 || 2})}>
+                        Siguiente
+                    </button>
                 </li>
             </ul>
         </nav>

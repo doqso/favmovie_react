@@ -4,12 +4,14 @@
 }
 
 #genres ul li{
+    background-color: #05404d;
     border-radius: 10px;
     margin: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     transition: all 0.2s ease-in-out;
 }
 
-#genres ul li button{
+#genres ul li a{
     display: block;
     text-align: center;
     width: 100%;
