@@ -1,5 +1,6 @@
 #movies .movie-list li{
     width: 10rem;
+    transition: all .2s;
 }
 
 #movies .movie-list article.card-body{

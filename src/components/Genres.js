@@ -1,7 +1,7 @@
 import React from "react"
 import Loading from "./Loading"
 import { Link, useParams } from "react-router-dom"
-import { getGenres } from "../services/favmoviesApi"
+import { getGenres } from "../services/apiRequests"
 import "../css/genres.css"
 
 const Genres = () => {

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getFavorites } from "../services/favmoviesApi";
+import { getFavorites } from "../services/apiRequests";
 import Movies from "./Movies";
 import Pagination from "./Pagination";
 

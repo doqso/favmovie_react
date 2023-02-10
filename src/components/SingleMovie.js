@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getMovieById, updateMovieWrapper } from "../services/favmoviesApi";
+import { getMovieById, updateMovieWrapper } from "../services/apiRequests";
 import Loading from "./Loading";
 import MovieWrapper from "../models/MovieWrapper";
 import "../css/singleMovie.css";
