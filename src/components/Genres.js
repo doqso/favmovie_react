@@ -16,7 +16,7 @@ const Genres = () => {
     if (!genres) return <Loading />
     return (
         <div id="genres" className="mb-5">
-            <h1>Generos</h1>
+            <h2>Generos</h2>
             <ul className="list-group d-grid ">
                 {genres.map((genre) => (
                     <li className={`list-group-item list-group-item-dark 

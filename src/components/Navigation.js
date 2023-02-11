@@ -4,25 +4,28 @@ import { useAuth } from "./useAuth";
 
 export default function Navigation() {
   const { user } = useAuth();
-  const navbar = useRef(null);
+  const navButton = useRef(null);
   const closeNavbar = () => {
-    navbar.current.classList.remove("show");
+    console.log(navButton.current.classList.contains("collapsed"));
+    if (!navButton.current.classList.contains("collapsed"))
+      navButton.current.click();
   };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
-      <div className="container-fluid p-0">
+      <div className="container-fluid p-0 justify-between">
         <Link className="navbar-brand" to="/genre/12?page=1">FavMovies</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button ref={navButton} className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div ref={navbar} className="collapse navbar-collapse" id="navbarNavAltMarkup" onClick={() => { closeNavbar() }}>
+        <div className="collapse navbar-collapse flex-grow-0" id="navbarNavAltMarkup" onClick={() => { closeNavbar() }}>
           <div className="navbar-nav">
             {user !== null ? <Fragment>
+              <p className="m-0 nav-link me-4" style={{cursor: "default"}}>Bienvenido <span className="text-light">{user.username}</span></p>
               <NavLink className="nav-link" to="/genre?page=1">Generos</NavLink>
               <NavLink className="nav-link" to="/favorites?page=1">Favoritos</NavLink>
               <NavLink className="nav-link" to="/watchlist?page=1">Pendientes</NavLink>
               <NavLink className="nav-link" aria-current="page" to="/">Acerca de</NavLink>
-              <NavLink className="nav-link text-bg-danger" to="/logout">Log out</NavLink>
+              <NavLink className="nav-link text-bg-danger" to="/logout">Cerrar sesión</NavLink>
             </Fragment>
               :
               <Fragment>

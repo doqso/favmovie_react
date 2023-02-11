@@ -6,17 +6,16 @@ const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const findToken = findTokenInCookies();
+  let credentials = findToken !== null ? parseJwt(findToken) : null;
+  const [user, setUser] = useState(credentials);
+  
   const login = (tokenToSave) => {
     document.cookie = `apiToken=${tokenToSave};Path=/;`;
     let credentials = parseJwt(tokenToSave)
     setUser(credentials)
   }
-  useEffect(() => {
-    const findToken = findTokenInCookies();
-    if (!findToken || findToken === 'undefined') return
-    login(findToken);
-  }, [])
+
   const logout = () => {
     document.cookie = `apiToken=;Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
     setUser(null);

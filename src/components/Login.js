@@ -1,11 +1,11 @@
 import React from "react"
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getTokenFromApi } from "../services/apiRequests"
 import { useAuth } from "./useAuth";
 import "../css/login.css"
 
 const Login = () => {
-  const { user, login, logout } = useAuth();
+  const { login, logout } = useAuth();
   const username = React.useRef(null)
   const password = React.useRef(null)
   const navigate = useNavigate()
@@ -15,10 +15,9 @@ const Login = () => {
       .then((data) => {
         if (data === "") return logout();
         else login(data);
-        navigate("/genre")
+        navigate("/genre/12?page=1")
       })
   }
-  if (user) return <Navigate to="/genre" />
   return (
     <div id="login">
       <div className="position-absolute top-0 start-0 w-100 h-100" />
