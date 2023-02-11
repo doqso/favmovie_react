@@ -11,12 +11,10 @@ export default function Main() {
   const currentPage = searchParams.get("page")
   const [movies, setMovies] = useState(null)
   React.useEffect(() => {
-    console.log({ currentGenre, currentPage });
     getDataByGenre(currentGenre, currentPage).then((data) => {
       setMovies(data.results)
     })
   }, [currentPage, currentGenre])
-  console.log({ movies });
   if (!currentGenre || currentGenre === undefined)
     return <Navigate key={"navigate"} to="/genre/12?page=1" />
   if (!currentPage || currentPage < 1)

@@ -13,7 +13,6 @@ const Genres = () => {
             setGenres(data)
         })
     }, [])
-    console.log(currentGenre);
     if (!genres) return <Loading />
     return (
         <div id="genres" className="mb-5">

@@ -12,7 +12,6 @@ export default function Favorites() {
             setFavorites(data.map(movie => movie.movie))
         })
     }, [])
-    console.log({ favorites });
     return (
         <Fragment>
             <h2 className="mt-5 ">Favoritos</h2>

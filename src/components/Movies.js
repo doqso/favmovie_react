@@ -11,7 +11,6 @@ import "../css/movies.css"
  * @returns 
  */
 export default function Movies({ movies }) {
-    console.log(movies);
     if (!movies) return <Loading />;
     return (
         <div id="movies">

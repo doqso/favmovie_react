@@ -1,6 +1,5 @@
 export default function Pagination({searchParams, setSearchParams}) {
     const currentPage = searchParams.get("page")
-    console.log(currentPage);
     return (
         <nav aria-label="Page navigation">
             <ul class="pagination m-0 gap-4">

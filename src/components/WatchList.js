@@ -12,7 +12,6 @@ export default function Watchlist() {
             setWatchList(data.map(movie => movie.movie))
         })
     }, [])
-    console.log({ watchList });
     return ( 
         <Fragment>
             <h2 className="mt-5 ">Pendientes</h2>

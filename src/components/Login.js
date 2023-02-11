@@ -1,23 +1,24 @@
 import React from "react"
+import { Navigate, useNavigate } from "react-router-dom";
+import { getTokenFromApi } from "../services/apiRequests"
+import { useAuth } from "./useAuth";
 import "../css/login.css"
-import { login } from "../services/apiRequests"
-import parseJwt from "../util/parseJwt"
 
-const Login = ({setUser}) => {
+const Login = () => {
+  const { user, login, logout } = useAuth();
   const username = React.useRef(null)
   const password = React.useRef(null)
+  const navigate = useNavigate()
   const handleLogin = (e) => {
     e.preventDefault()
-    login(username.current.value, password.current.value)
-      .then((res) => {
-        if (res === undefined) return
-        let credentials = parseJwt(res)
-        setUser(credentials)
+    getTokenFromApi(username.current.value, password.current.value)
+      .then((data) => {
+        if (data === "") return logout();
+        else login(data);
+        navigate("/genre")
       })
   }
-  const handleLogout = () => {
-    setUser(null)
-  }
+  if (user) return <Navigate to="/genre" />
   return (
     <div id="login">
       <div className="position-absolute top-0 start-0 w-100 h-100" />

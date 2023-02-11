@@ -10,7 +10,6 @@ export default function SingleMovie() {
     const [movieWrapper, setMovieWrapper] = React.useState(null);
     useEffect(() => {
         getMovieById(movieId).then((data) => {
-            console.log(data);
             setMovieWrapper(new MovieWrapper(data));
         });
     }, [movieId]);
@@ -18,14 +17,11 @@ export default function SingleMovie() {
         let newMovieWrapper = new MovieWrapper(movieWrapper);
         newMovieWrapper.isFavorite = newFavoriteStatus;
         newMovieWrapper.isWatchlist = newWatchlistStatus;
-        console.log(newMovieWrapper);
         updateMovieWrapper(newMovieWrapper)
             .then((data) => {
-                console.log(data);
                 if (data.status === 200) setMovieWrapper(newMovieWrapper);
             });
     }
-    console.log({ movieWrapper });
     if (!movieWrapper) return <Loading />;
     const { movie, isFavorite, isWatchlist } = movieWrapper;
     return (
