@@ -1,12 +1,12 @@
 import React from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import About from "./components/About";
 import Favorites from "./components/Favorites";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Main from "./components/Main";
+import Movie from "./components/Movie";
 import Navigation from "./components/Navigation";
-import SingleMovie from "./components/SingleMovie";
 import { useAuth } from "./components/useAuth";
 import Watchlist from "./components/WatchList";
 import "./css/main.css";
@@ -28,7 +28,7 @@ const App = () => {
         <Route path={"/logout"} element={<Logout />} />
         {/* Protected routes */}
         <Route path={"/genre/:id?"} element={<ProtectedRoute><Main /></ProtectedRoute>} />
-        <Route path={"/movie/:id"} element={<ProtectedRoute><SingleMovie /></ProtectedRoute>} />
+        <Route path={"/movie/:id"} element={<ProtectedRoute><Movie /></ProtectedRoute>} />
         <Route path={"/favorites"} element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
         <Route path={"/watchlist"} element={<ProtectedRoute><Watchlist /></ProtectedRoute>} />
         <Route path={"*"} element={<h1 className="position-absolute 

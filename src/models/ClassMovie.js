@@ -1,4 +1,4 @@
-export default class Movie{
+export default class ClassMovie{
     /**
      * @param {number} id
      * @param {string} title

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Navigate, useParams, useSearchParams } from "react-router-dom";
 import { getDataByGenre } from "../services/apiRequests";
 import Genres from "./Genres";
-import Movies from "./Movies";
+import MovieList from "./MovieList";
 import Pagination from "./Pagination";
 
 export default function Main() {
@@ -23,7 +23,7 @@ export default function Main() {
     <React.Fragment>
       <Genres />
       <h2 className="mt-4">Peliculas</h2>
-      <Movies movies={movies} />
+      <MovieList movies={movies} />
       <Pagination searchParams={searchParams} setSearchParams={setSearchParams} />
     </React.Fragment>
   );

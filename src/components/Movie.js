@@ -5,7 +5,7 @@ import Loading from "./Loading";
 import MovieWrapper from "../models/MovieWrapper";
 import "../css/singleMovie.css";
 
-export default function SingleMovie() {
+export default function Movie() {
     const { id: movieId } = useParams();
     const [movieWrapper, setMovieWrapper] = React.useState(null);
     useEffect(() => {
