@@ -15,11 +15,11 @@ export default class ClassMovie{
         this.overview = object.overview;
         this.poster_path = object.poster_path;
         this.release_date = new Date(object.release_date)
-        .toLocaleDateString("en-CA", {
+        .toISOString("es-CL", {
             year: "numeric",
             month: "2-digit",
-            day: "2-digit"
-        })
+            day: "2-digit",
+        }).split("T")[0];
         this.budget = object.budget;
         this.revenue = object.revenue;
         this.genres = object.genres;

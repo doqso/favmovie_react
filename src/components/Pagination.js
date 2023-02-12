@@ -1,4 +1,4 @@
-export default function Pagination({ searchParams, setSearchParams }) {
+export default function Pagination({ setSearchParams }) {
   const handlePageChange = (isNext) =>{
     if (isNext) {
       setSearchParams(prev => {

@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useAuth } from "./useAuth";
+import { useAuth } from "../custom_hooks/useAuth";
 
 export default function Navigation() {
   const { user } = useAuth();
@@ -19,16 +19,16 @@ export default function Navigation() {
         <div className="collapse navbar-collapse flex-grow-0 w-100 justify-content-between" id="navbarNavAltMarkup" onClick={() => { closeNavbar() }}>
           <div className="navbar-nav">
             {user !== null ? <Fragment>
-              <NavLink className="nav-link" to="/genre?page=1">Generos</NavLink>
-              <NavLink className="nav-link" to="/favorites?page=1">Favoritos</NavLink>
-              <NavLink className="nav-link" to="/watchlist?page=1">Pendientes</NavLink>
-              <NavLink className="nav-link" aria-current="page" to="/">Acerca de</NavLink>
-              <NavLink className="nav-link text-bg-danger" to="/logout">Cerrar sesión</NavLink>
+              <NavLink className="nav-link rounded-1" to="/genre?page=1">Generos</NavLink>
+              <NavLink className="nav-link rounded-1" to="/favorites?page=1">Favoritos</NavLink>
+              <NavLink className="nav-link rounded-1" to="/watchlist?page=1">Pendientes</NavLink>
+              <NavLink className="nav-link rounded-1" aria-current="page" to="/">Acerca de</NavLink>
+              <NavLink className="nav-link rounded-1 text-bg-danger" to="/logout">Cerrar sesión</NavLink>
             </Fragment>
               :
               <Fragment>
-                <NavLink className="nav-link" to="/login">Login</NavLink>
-                <NavLink className="nav-link" aria-current="page" to="/">Acerca de</NavLink>
+                <NavLink className="nav-link rounded-1" to="/login">Login</NavLink>
+                <NavLink className="nav-link rounded-1" aria-current="page" to="/">Acerca de</NavLink>
               </Fragment>
             }
           </div>
@@ -36,7 +36,7 @@ export default function Navigation() {
 
         {user !== null ?
           <p className="m-0 me-4 nav-link" style={{ cursor: "default" }}>
-            Bienvenido <span className="text-light">{user.username}
+            Bienvenido <span className="text-danger">{user.username}
             </span></p>
           : null
         }

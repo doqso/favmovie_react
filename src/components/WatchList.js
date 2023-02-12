@@ -1,15 +1,15 @@
 import React, { Fragment } from "react";
-import { useSearchParams } from "react-router-dom";
-import { getFavorites, getWatchlist } from "../services/apiRequests";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { getWatchlist } from "../services/apiRequests";
 import MovieList from "./MovieList";
-import Pagination from "./Pagination";
 
 export default function Watchlist() {
   const [watchList, setWatchList] = React.useState(null)
-  const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
   React.useEffect(() => {
-    getWatchlist().then((data) => {
-      setWatchList(data.map(movie => movie.movie))
+    getWatchlist().then((response) => {
+      if (response.redirectTo) return navigate(response.redirectTo)
+      setWatchList(response.map(movie => movie.movie))
     })
   }, [])
   return (
@@ -17,12 +17,11 @@ export default function Watchlist() {
       <h2 className="mt-4">Pendientes</h2>
       {watchList && watchList.length === 0
         ?
-        <h4 className="text-center mt-4">No tienes pendientes</h4>
+        <h4 className="text-center mt-4">No tienes peliculas pendientes por ver</h4>
         :
         <Fragment>
-
           <MovieList movies={watchList} />
-          <Pagination searchParams={searchParams} setSearchParams={setSearchParams} />
+          {/* <Pagination setSearchParams={setSearchParams} /> */}
         </Fragment>
       }
     </Fragment>

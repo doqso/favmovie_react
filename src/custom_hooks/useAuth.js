@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { setCookie } from "../util/cookieManager";
 import parseJwt from "../util/parseJwt";
 
 const AuthContext = React.createContext();
@@ -11,13 +12,13 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(credentials);
   
   const login = (tokenToSave) => {
-    document.cookie = `apiToken=${tokenToSave};Path=/;`;
+    setCookie(tokenToSave)
     let credentials = parseJwt(tokenToSave)
     setUser(credentials)
   }
 
   const logout = () => {
-    document.cookie = `apiToken=;Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+    setCookie(null)
     setUser(null);
   }
   return (

@@ -1,24 +1,23 @@
 #login div {
-    background: url(/public/login.jpg) rgba(1, 40, 62, 0.307);
-    background-size: cover;
-    background-blend-mode: color-burn;
-    z-index: -1;
+  background: url(/public/login.jpg) rgba(1, 40, 75, 0.482);
+  background-size: cover;
+  background-blend-mode: overlay;
+  z-index: -1;
 }
 
 #login section {
-    max-width: 400px;
+  max-width: 400px;
 }
 
 #login section * {
-    font-style: italic;
+  font-style: italic;
 }
 
-#login form input {
-    background: rgba(12, 53, 97, 0.658);
-    border-radius: 7px;
-    color: rgb(255, 255, 255);
+#login input{
+  background-color: rgba(0, 56, 96, 0.94);
 }
+
 
 #login form input::placeholder {
-    color: rgb(181, 181, 181);
+  color: rgb(184, 184, 184);
 }

@@ -1,14 +1,13 @@
-#single-movie article.d-flex{
-    gap: 20px;
-    border-radius: 15px;
-    margin: 0 auto;
-    max-width: 1000px;
-    /* box-shadow: 0 0 5px #ccc; */
+#single-movie article.d-flex {
+  gap: 20px;
+  border-radius: 15px;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
-#single-movie img{
-    align-self: flex-start;
-    border-radius: 15px;
-    max-height: 78vh;
-    object-fit: scale-down;
+#single-movie img {
+  align-self: flex-start;
+  border-radius: 15px;
+  max-height: 78vh;
+  object-fit: scale-down;
 }

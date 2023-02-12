@@ -1,10 +1,10 @@
 import React from "react"
 import { useNavigate } from "react-router-dom";
 import { getTokenFromApi } from "../services/apiRequests"
-import { useAuth } from "./useAuth";
+import { useAuth } from "../custom_hooks/useAuth";
 import "../css/login.css"
 
-const Login = () => {
+export default function Login() {
   const { login, logout } = useAuth();
   const username = React.useRef(null)
   const password = React.useRef(null)
@@ -14,8 +14,10 @@ const Login = () => {
     getTokenFromApi(username.current.value, password.current.value)
       .then((data) => {
         if (data === "") return logout();
-        else login(data);
-        navigate("/genre/12?page=1")
+        else {
+          login(data);
+          navigate("/genre/12?page=1")
+        }
       })
   }
   return (
@@ -26,15 +28,14 @@ const Login = () => {
         <h2 className="text-center">Iniciar Sesión</h2>
         <form className="border-2" onSubmit={handleLogin}>
           <div className="mb-3 mt-3">
-            <input ref={username} type="text" className="form-control" id="formGroupExampleInput" placeholder="Usuario" />
+            <input ref={username} type="text" className="form-control text-light" id="formGroupExampleInput" placeholder="Usuario" />
           </div>
           <div className="mb-3 mt-3">
-            <input ref={password} type="password" className="form-control" id="formGroupExampleInput2" placeholder="Contraseña" />
+            <input ref={password} type="password" className="form-control text-light" id="formGroupExampleInput2" placeholder="Contraseña" />
           </div>
-          <button type="submit" className="btn btn-primary">Sign in</button>
+          <button type="submit" className="btn btn-primary">Acceder</button>
         </form>
       </section>
     </div>
   )
 }
-export default Login

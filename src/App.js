@@ -7,7 +7,7 @@ import Logout from "./components/Logout";
 import Main from "./components/Main";
 import Movie from "./components/Movie";
 import Navigation from "./components/Navigation";
-import { useAuth } from "./components/useAuth";
+import { useAuth } from "./custom_hooks/useAuth";
 import Watchlist from "./components/WatchList";
 import "./css/main.css";
 

@@ -1,12 +1,16 @@
+import { useNavigate } from "react-router-dom";
+import { setCookie } from "../util/cookieManager";
+
 let BASE_URL = "http://localhost:8081";
 
 export async function getTokenFromApi(username, password) {
   return await fetch(`${BASE_URL}/login`, {
     method: "POST",
     mode: "cors",
+    credentials: "include",
     body: JSON.stringify({ id: 0, username, password }),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     }
   })
     .then(response => response.text())
@@ -19,7 +23,7 @@ export async function getGenres() {
     redirect: "follow",
     credentials: "include"
   })
-    .then(response => response.json())
+    .then(response => manageResponse(response))
 }
 
 export async function getDataByGenre(genreId, page = 1) {
@@ -27,7 +31,7 @@ export async function getDataByGenre(genreId, page = 1) {
     mode: "cors",
     credentials: "include",
   })
-    .then(response => response.json())
+    .then(response => manageResponse(response))
     .catch(error => {
       console.log(error)
     })
@@ -38,7 +42,7 @@ export async function getMovieById(movieId) {
     mode: "cors",
     credentials: "include",
   })
-    .then(response => response.json())
+    .then(response => manageResponse(response))
 }
 
 export async function updateMovieWrapper(movieWrapper) {
@@ -55,7 +59,7 @@ export async function getFavorites() {
     mode: "cors",
     credentials: "include",
   })
-    .then(response => response.json())
+    .then(response => manageResponse(response))
 }
 
 export async function getWatchlist() {
@@ -63,5 +67,14 @@ export async function getWatchlist() {
     credentials: "include",
     mode: "cors"
   })
-    .then(response => response.json())
+    .then(response => manageResponse(response))
 }
+
+const manageResponse = (response) => {
+  if (response.status === 401) {
+    response.redirectTo = "/logout"
+    return response
+  }
+  else return response.json()
+}
+

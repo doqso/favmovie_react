@@ -1,26 +1,18 @@
-#genres ul{
-    grid-template-columns: repeat( auto-fit, minmax(125px, 1fr) );
+#genres ul {
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
 }
 
-#genres ul li{
-    background-color: #05404d;
-    border-radius: 10px;
-    margin: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    transition: all 0.2s ease-in-out;
+#genres ul li {
+  background-color: #05404d;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
 }
 
-#genres ul li a{
-    display: block;
-    text-align: center;
-    width: 100%;
-    padding: 5px;
+#genres ul li:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: hsl(200, 50%, 50%) ;
 }
 
-#genres ul li:hover{
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    background-color: hsl(200, 50%, 50%);
-}
-.active{
-    background-color: #18719d !important;
+.active {
+  background-color: #18719d !important;
 }

@@ -1,15 +1,15 @@
 import React, { Fragment } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getFavorites } from "../services/apiRequests";
 import MovieList from "./MovieList";
-import Pagination from "./Pagination";
 
 export default function Favorites() {
   const [favorites, setFavorites] = React.useState(null)
-  const [searchParams, setSearchParams] = useSearchParams()
+const navigate = useNavigate()
   React.useEffect(() => {
-    getFavorites().then((data) => {
-      setFavorites(data.map(movie => movie.movie))
+    getFavorites().then((response) => {
+      if (response.redirectTo) return navigate(response.redirectTo)
+      setFavorites(response.map(movie => movie.movie))
     })
   }, [])
   return (
@@ -21,7 +21,7 @@ export default function Favorites() {
         :
         <Fragment>
           <MovieList movies={favorites} />
-          <Pagination searchParams={searchParams} setSearchParams={setSearchParams} />
+          {/* <Pagination setSearchParams={setSearchParams} /> */}
         </Fragment>
       }
     </Fragment>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getMovieById, updateMovieWrapper } from "../services/apiRequests";
 import Loading from "./Loading";
 import MovieWrapper from "../models/MovieWrapper";
@@ -8,9 +8,11 @@ import "../css/singleMovie.css";
 export default function Movie() {
     const { id: movieId } = useParams();
     const [movieWrapper, setMovieWrapper] = React.useState(null);
+    const navigate = useNavigate();
     useEffect(() => {
-        getMovieById(movieId).then((data) => {
-            setMovieWrapper(new MovieWrapper(data));
+        getMovieById(movieId).then((response) => {
+            if (response.redirectTo) return navigate(response.redirectTo);
+            setMovieWrapper(new MovieWrapper(response));
         });
     }, [movieId]);
     const updateMovieStatus = (newFavoriteStatus, newWatchlistStatus) => {
@@ -46,13 +48,13 @@ export default function Movie() {
                         ${isFavorite ? "btn-outline-success text-light" : "btn-outline-danger"}`}
                             title="Favoritos"
                             onClick={() => updateMovieStatus(!isFavorite, isWatchlist)}>
-                                Favoritos {isFavorite ? "✔" : "❤"}
+                                Favorito {isFavorite ? "✔" : "❤"}
                         </button>
                         <button className={`btn 
                         ${isWatchlist ? "btn-outline-success text-light" : "btn-outline-warning"} `}
                             title="Ver más tarde"
                             onClick={() => updateMovieStatus(isFavorite, !isWatchlist)}>
-                                Pendientes {isWatchlist ? "✔" : "🕜"} 
+                                Pendiente {isWatchlist ? "✔" : "🕜"} 
                         </button>
                     </div>
                 </section>
